@@ -13,6 +13,7 @@
         <module>algorithm</module>
         <module>spring</module>
         <module>basic</module>
+        <module>mq</module>
     </modules>
 
     <properties>
