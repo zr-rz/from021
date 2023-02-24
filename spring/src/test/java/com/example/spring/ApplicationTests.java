@@ -1,7 +1,5 @@
 package com.example.spring;
 
-import com.example.spring.proxy.Man;
-import com.example.spring.proxy.Person;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,21 +14,6 @@ class ApplicationTests {
 
     @Test
     void contextLoads() {
-    }
-
-    @Test
-    void jdkProxyTest() {
-        Man man = new Man();
-        Person proxyInstance = (Person) Proxy.newProxyInstance(Person.class.getClassLoader(), new Class[]{Person.class}, new InvocationHandler() {
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                System.out.println("before");
-                Object result = method.invoke(man, args);
-                System.out.println("after");
-                return result;
-            }
-        });
-        proxyInstance.say("zhang");
     }
 
     @Test
