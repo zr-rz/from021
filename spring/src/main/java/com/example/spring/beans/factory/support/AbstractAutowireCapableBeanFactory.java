@@ -5,6 +5,7 @@ import com.example.spring.beans.BeansException;
 import com.example.spring.beans.PropertyValue;
 import com.example.spring.beans.PropertyValues;
 import com.example.spring.beans.factory.config.BeanDefinition;
+import com.example.spring.beans.factory.config.BeanReference;
 
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory{
 
@@ -44,8 +45,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         try {
             PropertyValues propertyValues = beanDefinition.getPropertyValues();
             for (PropertyValue item : propertyValues.getPropertyValues()) {
+                String name = item.getName();
+                Object value = item.getValue();
+                if (value instanceof BeanReference) {
+                    // 实例a依赖实例b，先实例化b（暂不考虑循环依赖问题）
+                    BeanReference beanReference = (BeanReference) value;
+                    value = getBean(beanReference.getBeanName());
+                }
                 // 通过反射设置属性
-                BeanUtil.setFieldValue(bean, item.getName(), item.getValue());
+                BeanUtil.setFieldValue(bean, name, value);
             }
         } catch (Exception e) {
             throw new BeansException("error setting property values for bean: " + beanName, e);
