@@ -6,6 +6,7 @@ import com.example.spring.beans.PropertyValues;
 import com.example.spring.beans.factory.config.BeanDefinition;
 import com.example.spring.beans.factory.config.BeanReference;
 import com.example.spring.beans.factory.support.DefaultListableBeanFactory;
+import com.example.spring.beans.factory.xml.XmlBeanDefinitionReader;
 import com.example.spring.core.io.DefaultResourceLoader;
 import com.example.spring.core.io.Resource;
 import org.junit.jupiter.api.Test;
@@ -88,5 +89,18 @@ public class BeanDefinitionRegistryTest extends ApplicationTests{
         inputStream = resource.getInputStream();
         content = IoUtil.readUtf8(inputStream);
         System.out.println(content);
+    }
+
+    @Test
+    void testXmlFile() throws IOException {
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+        XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
+        xmlBeanDefinitionReader.loadBeanDefinitions("classpath:spring.xml");
+
+        Person person = (Person) beanFactory.getBean("person");
+        System.out.println(person);
+
+        Car car = (Car) beanFactory.getBean("car");
+        System.out.println(car);
     }
 }

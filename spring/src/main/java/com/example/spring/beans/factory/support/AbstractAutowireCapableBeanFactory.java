@@ -4,10 +4,12 @@ import cn.hutool.core.bean.BeanUtil;
 import com.example.spring.beans.BeansException;
 import com.example.spring.beans.PropertyValue;
 import com.example.spring.beans.PropertyValues;
+import com.example.spring.beans.factory.config.AutowireCapableBeanFactory;
 import com.example.spring.beans.factory.config.BeanDefinition;
 import com.example.spring.beans.factory.config.BeanReference;
 
-public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory{
+public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory
+        implements AutowireCapableBeanFactory {
 
     private InstantiationStrategy instantiationStrategy = new SimpleInstantiationStrategy();
     @Override

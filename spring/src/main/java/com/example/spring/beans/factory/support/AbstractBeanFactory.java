@@ -2,8 +2,9 @@ package com.example.spring.beans.factory.support;
 
 import com.example.spring.beans.factory.BeanFactory;
 import com.example.spring.beans.factory.config.BeanDefinition;
+import com.example.spring.beans.factory.config.ConfigurableBeanFactory;
 
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
 
     @Override
     public Object getBean(String name) {
