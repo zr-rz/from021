@@ -1,12 +1,17 @@
 package com.example.spring;
 
+import cn.hutool.core.io.IoUtil;
 import com.example.spring.beans.PropertyValue;
 import com.example.spring.beans.PropertyValues;
 import com.example.spring.beans.factory.config.BeanDefinition;
 import com.example.spring.beans.factory.config.BeanReference;
 import com.example.spring.beans.factory.support.DefaultListableBeanFactory;
+import com.example.spring.core.io.DefaultResourceLoader;
+import com.example.spring.core.io.Resource;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,5 +67,26 @@ public class BeanDefinitionRegistryTest extends ApplicationTests{
 
         Person person = (Person) beanFactory.getBean("person");
         System.out.println(person);
+    }
+
+    @Test
+    void testResourceLoader() throws IOException {
+        DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
+
+        // classpath
+        Resource resource = defaultResourceLoader.getResource("classpath:hello.txt");
+        InputStream inputStream = resource.getInputStream();
+        String content = IoUtil.readUtf8(inputStream);
+        System.out.println(content);
+
+        resource = defaultResourceLoader.getResource("src/test/resources/hello.txt");
+        inputStream = resource.getInputStream();
+        content = IoUtil.readUtf8(inputStream);
+        System.out.println(content);
+
+        resource = defaultResourceLoader.getResource("https://www.baidu.com");
+        inputStream = resource.getInputStream();
+        content = IoUtil.readUtf8(inputStream);
+        System.out.println(content);
     }
 }
