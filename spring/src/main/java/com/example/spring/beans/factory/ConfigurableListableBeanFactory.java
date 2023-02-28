@@ -3,6 +3,7 @@ package com.example.spring.beans.factory;
 import com.example.spring.beans.BeansException;
 import com.example.spring.beans.factory.config.AutowireCapableBeanFactory;
 import com.example.spring.beans.factory.config.BeanDefinition;
+import com.example.spring.beans.factory.config.BeanPostProcessor;
 import com.example.spring.beans.factory.config.ConfigurableBeanFactory;
 
 /**
@@ -17,4 +18,11 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
      * @throws BeansException
      */
     BeanDefinition getBeanDefinition(String beanName) throws BeansException;
+
+    /**
+     * 提前实例化所有单例
+     */
+    void preInstantiateSingletons();
+
+    void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 }

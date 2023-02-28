@@ -1,4 +1,4 @@
-package com.example.spring;
+package com.example.spring.bean;
 
 public class Car {
     private String brand;

@@ -7,6 +7,14 @@ public class PropertyValues {
     private final List<PropertyValue> propertyValueList = new ArrayList<>();
 
     public void addPropertyValue(PropertyValue propertyValue) {
+        for (int i = 0; i < propertyValueList.size(); i++) {
+            PropertyValue pv = propertyValueList.get(i);
+            if (pv.getName().equals(propertyValue.getName())) {
+                // 重复属性值 覆盖
+                propertyValueList.set(i, propertyValue);
+                return;
+            }
+        }
         propertyValueList.add(propertyValue);
     }
 

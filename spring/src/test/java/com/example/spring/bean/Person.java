@@ -1,4 +1,6 @@
-package com.example.spring;
+package com.example.spring.bean;
+
+import com.example.spring.bean.Car;
 
 public class Person {
     private String name;

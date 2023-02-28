@@ -1,6 +1,8 @@
 package com.example.spring;
 
 import cn.hutool.core.io.IoUtil;
+import com.example.spring.bean.Car;
+import com.example.spring.bean.Person;
 import com.example.spring.beans.PropertyValue;
 import com.example.spring.beans.PropertyValues;
 import com.example.spring.beans.factory.config.BeanDefinition;
@@ -13,8 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BeanDefinitionRegistryTest extends ApplicationTests{
 
