@@ -10,7 +10,6 @@
 
     <modules>
         <module>zookeeper</module>
-        <module>algorithm</module>
         <module>spring</module>
         <module>basic</module>
         <module>mq</module>

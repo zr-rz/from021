@@ -18,4 +18,6 @@
 
     <bean class="com.example.spring.common.CustomBeanFactoryPostProcessor"/>
     <bean class="com.example.spring.common.CustomerBeanPostProcessor"/>
+
+    <bean class="com.example.spring.service.HelloService"/>
 </beans>
