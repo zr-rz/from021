@@ -10,6 +10,7 @@ import com.example.spring.beans.factory.support.AbstractBeanDefinitionReader;
 import com.example.spring.beans.factory.support.BeanDefinitionRegistry;
 import com.example.spring.core.io.Resource;
 import com.example.spring.core.io.ResourceLoader;
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -33,6 +34,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     public static final String REF_ATTRIBUTE = "ref";
     public static final String INIT_METHOD_ATTRIBUTE = "init-method";
     public static final String DESTROY_METHOD_ATTRIBUTE = "destroy-method";
+    public static final String SCOPE_ATTRIBUTE = "scope";
 
     public XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
         super(registry);
@@ -73,6 +75,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                     String className = bean.getAttribute(CLASS_ATTRIBUTE);
                     String initMethodName = bean.getAttribute(INIT_METHOD_ATTRIBUTE);
                     String destroyMethodName = bean.getAttribute(DESTROY_METHOD_ATTRIBUTE);
+                    String beanScope = bean.getAttribute(SCOPE_ATTRIBUTE);
 
                     Class<?> clazz = null;
                     try {
@@ -90,6 +93,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                     BeanDefinition beanDefinition = new BeanDefinition(clazz);
                     beanDefinition.setInitMethodName(initMethodName);
                     beanDefinition.setDestroyMethodName(destroyMethodName);
+                    if (StringUtils.isNotBlank(beanScope)) {
+                        beanDefinition.setScope(beanScope);
+                    }
 
                     for (int j = 0; j < bean.getChildNodes().getLength(); j++) {
                         if (bean.getChildNodes().item(j) instanceof Element) {
