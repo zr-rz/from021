@@ -1,4 +1,4 @@
-package com.example.spring;
+package com.example.spring.ioc;
 
 public class HelloService {
     public String hello() {

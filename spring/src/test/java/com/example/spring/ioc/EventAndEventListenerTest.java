@@ -1,4 +1,4 @@
-package com.example.spring;
+package com.example.spring.ioc;
 
 import com.example.spring.bean.Car;
 import com.example.spring.bean.Person;

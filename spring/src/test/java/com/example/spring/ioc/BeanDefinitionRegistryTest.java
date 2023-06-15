@@ -1,4 +1,4 @@
-package com.example.spring;
+package com.example.spring.ioc;
 
 import cn.hutool.core.io.IoUtil;
 import com.example.spring.bean.Car;

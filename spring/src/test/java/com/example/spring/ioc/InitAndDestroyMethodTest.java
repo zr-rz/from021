@@ -1,4 +1,4 @@
-package com.example.spring;
+package com.example.spring.ioc;
 
 import com.example.spring.context.support.ClassPathXmlApplicationContext;
 import org.junit.Test;
