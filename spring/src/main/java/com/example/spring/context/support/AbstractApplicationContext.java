@@ -1,6 +1,6 @@
 package com.example.spring.context.support;
 
-import com.example.spring.ApplicationListener;
+import com.example.spring.context.ApplicationListener;
 import com.example.spring.beans.BeansException;
 import com.example.spring.beans.factory.ConfigurableListableBeanFactory;
 import com.example.spring.beans.factory.config.BeanFactoryPostProcessor;

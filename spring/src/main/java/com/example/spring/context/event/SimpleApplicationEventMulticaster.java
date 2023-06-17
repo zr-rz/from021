@@ -1,6 +1,6 @@
 package com.example.spring.context.event;
 
-import com.example.spring.ApplicationListener;
+import com.example.spring.context.ApplicationListener;
 import com.example.spring.beans.BeansException;
 import com.example.spring.beans.factory.BeanFactory;
 import com.example.spring.context.ApplicationEvent;

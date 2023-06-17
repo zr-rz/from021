@@ -1,6 +1,6 @@
 package com.example.spring.common.event;
 
-import com.example.spring.ApplicationListener;
+import com.example.spring.context.ApplicationListener;
 import com.example.spring.context.event.ContextClosedEvent;
 
 /**
