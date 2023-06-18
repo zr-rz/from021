@@ -6,7 +6,7 @@ package com.example.spring.aop;
  * @author ryan
  * @date 2023/6/13 22:51
  */
-public interface PointCut {
+public interface Pointcut {
 
     ClassFilter getClassFilter();
 
