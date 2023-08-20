@@ -13,6 +13,7 @@
         <module>spring</module>
         <module>basic</module>
         <module>mq</module>
+        <module>netty</module>
     </modules>
 
     <properties>
@@ -33,6 +34,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
         <dependency>

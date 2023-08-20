@@ -9,10 +9,7 @@ import com.example.spring.beans.factory.Aware;
 import com.example.spring.beans.factory.BeanFactoryAware;
 import com.example.spring.beans.factory.DisposableBean;
 import com.example.spring.beans.factory.InitializingBean;
-import com.example.spring.beans.factory.config.AutowireCapableBeanFactory;
-import com.example.spring.beans.factory.config.BeanDefinition;
-import com.example.spring.beans.factory.config.BeanPostProcessor;
-import com.example.spring.beans.factory.config.BeanReference;
+import com.example.spring.beans.factory.config.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Method;
@@ -21,9 +18,37 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         implements AutowireCapableBeanFactory {
 
     private InstantiationStrategy instantiationStrategy = new SimpleInstantiationStrategy();
+
     @Override
     protected Object createBean(String beanName, BeanDefinition beanDefinition) {
+        // 如果bean需要代理，则直接返回代理对象
+        Object bean = resolveBeforeInstantiation(beanName, beanDefinition);
+        if (bean != null) {
+            return bean;
+        }
+
         return doCreateBean(beanName, beanDefinition);
+    }
+
+    protected Object resolveBeforeInstantiation(String beanName, BeanDefinition beanDefinition) {
+        Object bean = applyBeanPostProcessorsBeforeInstantiation(beanDefinition.getBeanClass(), beanName);
+        if (beanName != null) {
+            bean = applyBeanPostProcessorsAfterInitialization(bean, beanName);
+        }
+        return bean;
+    }
+
+    protected Object applyBeanPostProcessorsBeforeInstantiation(Class beanClass, String beanName) {
+        for (BeanPostProcessor beanPostProcessor : getBeanPostProcessors()) {
+            if (beanPostProcessor instanceof InstantiationAwareBeanPostProcessor) {
+                Object result = ((InstantiationAwareBeanPostProcessor) beanPostProcessor).postProcessBeforeInstantiation(beanClass, beanName);
+                if (result != null) {
+                    return result;
+                }
+            }
+        }
+
+        return null;
     }
 
     protected Object doCreateBean(String beanName, BeanDefinition beanDefinition) {
